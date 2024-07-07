@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Detection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        #info, #botChecks, #captcha { 
+            background-color: #f4f4f4; 
+            padding: 20px; 
+            margin-bottom: 20px; 
+            border-radius: 5px;
+        }
+        .pass { color: green; }
+        .fail { color: red; }
+        #captcha { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Bot Detection Test</h1>
+    <div id="info"></div>
+    <div id="botChecks"></div>
+    <div id="captcha">
+        <h2>CAPTCHA Challenge</h2>
+        <p id="captchaImage"></p>
+        <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+        <button id="captchaSubmit">Submit</button>
+        <p id="captchaError"></p>
+    </div>
+
+    <script type="module">
+        import BotDetector from './js/main.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            window.BotDetector = BotDetector;
+            BotDetector.init({
+                botScoreThreshold: 0.5,
+                powDifficulty: 4,
+                powTimeout: 5000,
+                debug: true,
+                forceFail: true
+            });
+        });
+    </script>
+</body>
+</html>
